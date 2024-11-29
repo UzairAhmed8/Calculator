@@ -1,64 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Calculator By Uzair Ahmed</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="utils.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(img/pexels-pixabay-206359.jpg);
+        }
+        .calculator {
+            width: 260px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .calculator input {
+            grid-column: span 4;
+            height: 40px;
+            text-align: right;
+            font-size: 1.5rem;
+            padding: 0 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .calculator button {
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            font-size: 1.2rem;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .calculator button:hover {
+            background-color: #ddd;
+        }
+        .calculator button:active {
+            background-color: #ccc;
+        }
+        .equals {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .clear {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
 </head>
-<body style="background-color: black; color: white;">
-    <header class="head1">
-        <div class="hdd1">
-            
-            <h1 class="hd1">Calculate It</h1>
+<body>
 
-        </div>
-    </header>
-    
-    <br><br>
+<div class="calculator">
+    <input type="text" id="display" disabled />
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('/')">/</button>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="clearDisplay()" class="clear">C</button>
+    <button onclick="appendToDisplay('+')">+</button>
+    <button onclick="calculateResult()" class="equals">=</button>
+</div>
 
-    <section class="cal-1">
-        <br>
-        <div class="cal-1-1">
-            <button class="btns">Ac</button>
-            <button class="btns" id="btns"><sup>+</sup>/<sub>-</sub></button>
-            <button class="btns">%</button>
-            <button class="btns" id="btn-1">÷</button>
-        </div>
+<script>
+    function appendToDisplay(value) {
+        const display = document.getElementById('display');
+        display.value += value;
+    }
 
-        <br>
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
 
-        <div class="cal-1-1">   
-            <button class="btns">7</button>
-            <button class="btns">8</button>
-            <button class="btns">9</button>
-            <button class="btns" id="btn-2">x</button>
-        </div>
+    function calculateResult() {
+        const display = document.getElementById('display');
+        try {
+            display.value = eval(display.value);
+        } catch (e) {
+            display.value = 'Error';
+        }
+    }
+</script>
 
-        <br>
-
-        <div class="cal-1-1">
-            <button class="btns">4</button>
-            <button class="btns">5</button>
-            <button class="btns">6</button>
-            <button class="btns" id="btn-2">-</button>
-        </div>
-
-        <br>
-
-        <div class="cal-1-1">
-            <button class="btns">1</button>
-            <button class="btns">2</button>
-            <button class="btns">3</button>
-            <button class="btns" id="btn-2">+</button>
-        </div>
-
-        <br>
-
-        <div class="cal-1-1">
-            <button class="btns" style="width: 190px; border-radius: 10px;">0</button>
-            <button class="btns">,</button>
-            <button class="btns" id="btn-2">=</button>
-        </div>
-    </section>
 </body>
 </html>
